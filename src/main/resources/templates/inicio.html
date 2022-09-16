@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xlmns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:replace="fragments/bootstrap.html :: style">
+</head>
+<body>
+<nav th:replace="fragments/navbar.html:: nav">
+</nav>
+    <div class="b-example-divider"></div>
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img th:src="@{/images/egg.png}"class="d-block mx-lg-auto img-fluid" alt="Temas de arranque" width="500" height="300" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bienvenidos a EggNews</font></font></h1>
+            <p class="lead"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> El mejor sitio de información y noticias. ¿Estás listo para ser parte de ésta aventura? Como usuario podes leer noticias. Y si sos periodista podés formar parte de nuestra propuesta subiendo tus propias noticias!</font></font></p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="/login" type="button" class="btn btn-primary btn-lg px-4 me-md-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Login</font></font></a>
+                <a href="/registrar" type="button" class="btn btn-outline-secondary btn-lg px-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Registrate</font></font></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:replace="fragments/bootstrap.html:: script"></script>
+</body>
+</html>

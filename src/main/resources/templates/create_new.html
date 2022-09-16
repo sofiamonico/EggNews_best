@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xlmns:th="http://www.thymeleaf.org">
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:replace="fragments/bootstrap.html :: style">
+</head>
+<body>
+<nav th:replace="fragments/navbar.html:: nav">
+</nav>
+<div class="bg-dark text-secondary px-2 py-2 text-center">
+    <div class="py-5">
+        <h1 class="display-5 fw-bold text-white">EggNews</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="fs-5 mb-4">¿Listo para subir noticias? ¡Es momento de informar!</p>
+        </div>
+    </div>
+</div>
+
+<section th:fragment="form" class="w-100 p-4 d-flex justify-content-center pb-4">
+    <form action="/noticia/agregado" style="width: 26rem;" method="POST" enctype="multipart/form-data">
+        <!-- Titulo input -->
+        <div class="form-outline mb-4">
+            <input hidden type="number" th:value="__${session.usuariosession.idUsuario}__" name="id">
+            <label class="form-label" for="form4Example1" style="margin-left: 0px;">Titulo de la noticia</label>
+            <input  type="text" name="titulo" id="titulo" class="form-control">
+
+            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+        <!-- Message input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example3" style="margin-left: 0px;">Descripcion</label>
+            <textarea maxlength="300" class="form-control" name="cuerpo" id="cuerpo" rows="4"></textarea>
+
+            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div></div>
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <div class="input-group mb-3">
+                <label>Cargar imagen
+                    <input type="file" name="imagen" accept="image/png, image/jpeg" />
+                </label>
+            </div>
+            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 88.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Publicar</button>
+
+
+        <div th:if="${error != null}" class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div class="card-body">
+                <h5 class="card-title">Error!</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+
+
+    </form>
+</section>
+<script th:replace="fragments/bootstrap.html:: script"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xlmns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link th:replace="fragments/bootstrap.html :: style">
+</head>
+<body>
+<nav th:replace="fragments/navbar.html:: nav">
+</nav>
+
+<div class="bg-dark text-secondary px-2 py-2 text-center">
+  <div class="py-5">
+    <h1 class="display-5 fw-bold text-white">EggNews</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="fs-5 mb-4">Bienvenido administrador</p>
+    </div>
+      <a href="/admin/usuarios" type="button" class="btn btn-outline-light me-2">Ver Usuarios</a>
+    <a href="/admin/noticias" type="button" class="btn btn-outline-light me-2">Ver Noticias</a>
+  </div>
+</div>
+<script th:replace="fragments/bootstrap.html:: script"></script>
+</body>
+</html>

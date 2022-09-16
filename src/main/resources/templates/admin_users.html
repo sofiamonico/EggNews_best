@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xlmns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:replace="fragments/bootstrap.html :: style">
+</head>
+<body>
+<nav th:replace="fragments/navbar.html:: nav">
+</nav>
+<div th:if="${error != null}" class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div class="card-body">
+        <h5 class="card-title">Error!</h5>
+        <p class="card-text" th:text="${error}"></p>
+    </div>
+</div>
+<div th:if="${exito != null}" class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div class="card-body">
+        <h5 class="card-title">Exito!</h5>
+        <p class="card-text" th:text="${exito}"></p>
+    </div>
+</div>
+<main role="main" class="container">
+    <div class="jumbotron">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Username</th>
+                <th scope="col">Rol
+                </th>
+                <th scope="col">Salario
+                </th>
+                <th scope="col">Editar
+                </th>
+            </tr>
+            </thead>
+            <tbody th:each="user : ${users}">
+            <tr>
+                <th scope="row" th:text="${user.userId}"></th>
+                <td th:text="${user.userName}"></td>
+                <td th:text="${user.role}">
+                </td>
+                <td th:text="${user.monthly_salary}"></td>
+                <td>
+                    <button name="buttonEdit" th:id="'send-' + ${user.userId}" type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalVentana" style="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- Modal -->
+<div class="modal fade"  id="modalVentana" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                 <div class="md-form">
+                        <p>Elija el rol que desea que tenga el usuario:</p>
+                        <div>
+                            <input class="other" type="radio" id="userOption"
+                                   name="rol" value="Usuario">
+                            <label for="userOption">Usuario</label>
+
+                            <input type="radio" id="periodistaOption"
+                                   name="rol" value="Periodista">
+                            <label for="periodistaOption">Periodista</label>
+
+                            <input type="radio" class="other" id="adminOption"
+                                   name="rol" value="Administrador">
+                            <label for="adminOption">Administrador</label>
+                        </div>
+                 </div>
+                <div class="md-form mb-2" id="salario">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                    Cerrar
+                </button>
+                <button type="submit" class="btn btn-primary" name="send-button" id="">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:replace="fragments/bootstrap.html:: script"></script>
+<script>
+        const periodistaOption = document.getElementById("periodistaOption");
+        const div = document.getElementById("salario");
+
+
+        periodistaOption.addEventListener("click", () =>{
+                div.innerHTML = `<label for="precio_salario">Ingrese el salario inicial del periodista:</label>
+                    <input type="number" id="precio_salario" name="tentacles" min="2000">`;
+                })
+
+        const otherInput = document.querySelectorAll( '.other');
+        otherInput.forEach((input) => input.addEventListener("click", () => {
+             div.innerHTML= "";
+        }))
+
+        const buttonEdit = document.querySelectorAll('[name="buttonEdit"]');
+        const buttonSend = document.querySelector('[name="send-button"]');
+
+        //Obtengo el id del boton edit para mandarselo al id del botonSend
+        buttonEdit.forEach((button) => button.addEventListener("click", () =>{
+             console.log(button.id)
+            let botonEditID = button.id;
+            buttonSend.id = botonEditID;
+        }))
+
+        buttonSend.addEventListener("click", async () =>{
+            let botonSendID = buttonSend.id
+            console.log(botonSendID)
+            const getBotonId = (botonSendID) =>parseInt(botonSendID.split("-")[1]);
+            const inputRolValue = document.querySelector('input[name="rol"]:checked').value;
+            const inputSalarioValue = document.getElementById('precio_salario').value;
+            var data;
+            if(inputRolValue == "Periodista"){
+                data = {
+                 role: inputRolValue,
+                monthly_salary: inputSalarioValue
+            }
+            }else{
+                data = {
+                role: inputRolValue,
+                }
+            }
+            const response = await fetch(`/admin/usuario/${getBotonId(botonSendID)}`, {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            })
+            location.reload();
+        })
+</script>
+</body>
+</html>

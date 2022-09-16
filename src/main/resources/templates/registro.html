@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"  xlmns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:replace="fragments/bootstrap.html :: style">
+</head>
+<body>
+<nav th:replace="fragments/navbar.html:: nav">
+</nav>
+<main class="form-signin w-100 m-auto" style="margin-top: 30px;">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <form th:action="@{/registro}" method="POST">
+                    <div th:if="${error != null}" class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div class="card-body">
+                            <h5 class="card-title">Error!</h5>
+                            <p class="card-text" th:text="${error}"></p>
+                        </div>
+                    </div>
+                    <img th:src="@{/images/egg.png}"class="mb-4" alt="" width="72" height="57" loading="lazy">
+                    <h1 class="h3 mb-3 fw-normal">Cree una nueva cuenta</h1>
+
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="username" id="floatingInput" placeholder="username" th:value="${username}">
+                        <label >Username</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Contraseña</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" name="password2" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Repita la contraseña</label>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                    <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<script th:replace="fragments/bootstrap.html:: script"></script>
+</body>
+</html>

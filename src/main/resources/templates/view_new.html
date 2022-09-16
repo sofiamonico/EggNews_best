@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xlmns:th="http://www.thymeleaf.org">
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:replace="fragments/bootstrap.html :: style">
+</head>
+<body>
+<nav th:replace="fragments/navbar.html:: nav">
+</nav>
+<div class="bg-dark text-secondary px-2 py-2 text-center">
+    <div class="py-5">
+        <h1 class="display-5 fw-bold text-white">EggNews</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="fs-5 mb-4">¿Listo para subir noticias? ¡Es momento de informar!</p>
+        </div>
+    </div>
+</div>
+<div class="b-example-divider"></div>
+<div class="container px-4 py-5" id="custom-cards">
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading"> <span class="text-muted" th:text='${noticia.titulo}'></span></h2>
+            <p class="lead" th:text='${noticia.cuerpo}'></p>
+        </div>
+        <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  th:src="@{'data:image/jpeg;base64 ,' + ${noticia.img}}">
+        </div>
+    </div>
+</div>
+<script th:replace="fragments/bootstrap.html:: script"></script>
+</body>
+</html>
