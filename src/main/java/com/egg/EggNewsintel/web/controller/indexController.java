@@ -31,7 +31,6 @@ public class indexController {
     @GetMapping("/index")
     public String index(ModelMap modelo){
         List<New> news = newService.getAll() ;
-
         modelo.addAttribute("news", news);
         return "index.html";
     }

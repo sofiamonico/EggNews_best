@@ -15,9 +15,8 @@ public class Periodista extends Usuario{
         @Column(columnDefinition = "double default 0.0")
         private Double salarioMensual;
 
-        @OneToMany
-        @JoinColumn(name = "idNoticia", insertable = false, updatable = false)
-        private List<Noticia> cantidadNoticias;
+        @OneToMany(mappedBy = "periodista")
+        private List<Noticia> noticias;
 
         public Double getSalarioMensual() {
                 return salarioMensual;
@@ -27,11 +26,11 @@ public class Periodista extends Usuario{
                 this.salarioMensual = salarioMensual;
         }
 
-        public List<Noticia> getCantidadNoticias() {
-                return cantidadNoticias;
+        public List<Noticia> getNoticias() {
+                return noticias;
         }
 
-        public void setCantidadNoticias(List<Noticia> cantidadNoticias) {
-                this.cantidadNoticias = cantidadNoticias;
+        public void setNoticias(List<Noticia> noticias) {
+                this.noticias = noticias;
         }
 }

@@ -18,6 +18,7 @@ public class Noticia {
     private Date fecha_publicacion;
 
     @ManyToOne
+    @JoinColumn(name = "periodista_id_usuario")
     private Periodista periodista;
 
     public Integer getIdNoticia() {

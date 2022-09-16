@@ -23,6 +23,6 @@ public interface JournalistMapper {
     List<Journalist> toJournalists(List<Periodista> periodistas);
 
     @InheritInverseConfiguration
-    @Mapping(target = "cantidadNoticias", ignore = true)
+    @Mapping(target = "noticias", ignore = true)
     Periodista toPeriodista(Journalist journalist);
 }
