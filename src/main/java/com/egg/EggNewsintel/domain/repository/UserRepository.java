@@ -1,5 +1,6 @@
 package com.egg.EggNewsintel.domain.repository;
 
+import com.egg.EggNewsintel.domain.Journalist;
 import com.egg.EggNewsintel.domain.UserRequest;
 import com.egg.EggNewsintel.domain.UserResponse;
 import com.egg.EggNewsintel.persistence.entity.Usuario;
@@ -12,6 +13,7 @@ public interface UserRepository {
     List<UserResponse> getAll();
     Optional<UserResponse> getUserResponse(int userId);
     Optional<UserRequest> getUserRequest(int userId);
+
     Optional<UserResponse> findUserByUserName(String userName);
     void changeRolToJournalist(double salario, int id,String role);
     Optional<Usuario> findUsuarioByUserName(String userName);

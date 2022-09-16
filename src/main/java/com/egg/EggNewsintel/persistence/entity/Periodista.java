@@ -3,10 +3,7 @@ package com.egg.EggNewsintel.persistence.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -15,7 +12,7 @@ public class Periodista extends Usuario{
         @Column(columnDefinition = "double default 0.0")
         private Double salarioMensual;
 
-        @OneToMany(mappedBy = "periodista")
+        @OneToMany(mappedBy = "periodista", fetch = FetchType.EAGER)
         private List<Noticia> noticias;
 
         public Double getSalarioMensual() {

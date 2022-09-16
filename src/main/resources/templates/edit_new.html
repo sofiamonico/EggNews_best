@@ -1,4 +1,4 @@
-<html xlmns:th="http://www.thymeleaf.org">
+<html xlmns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>TODO supply a title</title>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
 </div>
 
 <section class="w-100 p-4 d-flex justify-content-center pb-4">
-    <form th:action="@{/noticia/editar/__${noticia.id}__}" style="width: 26rem;" method="POST" enctype="multipart/form-data">
+    <form th:action="@{/noticia/editar/__${noticia.newId}__}" style="width: 26rem;" method="POST" enctype="multipart/form-data">
 
         <div th:if="${error != null}" class="alert alert-danger d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -28,19 +28,19 @@
             </div>
         </div>
 
-        <input hidden th:value="__${noticia.id}__" name="id">
+        <input hidden th:value="__${noticia.newId}__" name="id">
 
         <!-- Titulo input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="form4Example1" style="margin-left: 0px;">Titulo de la noticia</label>
-            <input th:value="${noticia.titulo}" type="text" name="titulo" id="titulo" class="form-control">
+            <input th:value="${noticia.title}" type="text" name="titulo" id="titulo" class="form-control">
 
             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
 
         <!-- Message input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="form4Example3" style="margin-left: 0px;">Descripcion</label>
-            <textarea maxlength="300" class="form-control" name="cuerpo" id="cuerpo" rows="4" th:text="${noticia.cuerpo}"></textarea>
+            <textarea maxlength="300" class="form-control" name="cuerpo" id="cuerpo" rows="4" th:text="${noticia.body}"></textarea>
             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div></div>
 
         <!-- Email input -->

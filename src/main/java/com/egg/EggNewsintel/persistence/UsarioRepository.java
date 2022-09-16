@@ -1,5 +1,6 @@
 package com.egg.EggNewsintel.persistence;
 
+import com.egg.EggNewsintel.domain.Journalist;
 import com.egg.EggNewsintel.domain.UserRequest;
 import com.egg.EggNewsintel.domain.UserResponse;
 import com.egg.EggNewsintel.domain.repository.UserRepository;
@@ -30,6 +31,7 @@ public class UsarioRepository implements UserRepository {
         return userResponseMapper.toUsers(usuarios);
     }
 
+
     @Override
     public Optional<UserResponse> getUserResponse(int userId) {
         return usuarioCrudRepository.findById(userId).map(usuario -> userResponseMapper.toUser(usuario));
@@ -39,6 +41,7 @@ public class UsarioRepository implements UserRepository {
     public Optional<UserRequest> getUserRequest(int userId) {
         return usuarioCrudRepository.findById(userId).map(usuario -> userRequestMapper.toUser(usuario));
     }
+
 
     @Override
     public Optional<UserResponse> findUserByUserName(String userName) {

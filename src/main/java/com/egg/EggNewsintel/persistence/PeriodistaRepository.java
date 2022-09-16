@@ -8,6 +8,7 @@ import com.egg.EggNewsintel.persistence.entity.Periodista;
 import com.egg.EggNewsintel.persistence.mapper.JournalistMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,11 @@ public class PeriodistaRepository implements JournalistRepository {
     @Override
     public Optional<Journalist> getJournalist(int journalistId) {
         return periodistaCrudRepository.findById(journalistId).map(periodista -> mapper.toJournalist(periodista));
+    }
+
+    @Override
+    public Optional<Journalist> findPeriodistaByNombreUsuario(String nombreUsuario) {
+        return periodistaCrudRepository.findPeriodistaByNombreUsuario(nombreUsuario).map(periodista -> mapper.toJournalist(periodista));
     }
 
     @Override

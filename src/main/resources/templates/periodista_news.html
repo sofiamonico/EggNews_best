@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xlmns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>TODO supply a title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:replace="fragments/bootstrap.html :: style">
+
+</head>
+<body>
+<nav th:replace="fragments/navbar.html:: nav">
+</nav>
+
+<div class="b-example-divider"></div>
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Tus noticias</h2>
+  <div class="row mb-2">
+    <div th:each="neww :${news}" class="col-md-6">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <h3 class="mb-0 text-dark" th:text="${neww.title}">
+          </h3>
+          <div class="mb-1 text-muted" th:text="${neww.date}"></div>
+          <p class="card-text mb-auto" th:text="${neww.body}" ></p>
+          <div>
+            <a th:href="@{/noticia/editar/__${neww.newId}__}" class="btn btn-secondary btn-lg btn-block">Editar</a>
+            <a th:id="'delete-' + ${neww.newId}"  name="button-delete" class="btn btn-danger btn-lg btn-block">Eliminar</a></div>
+        </div>
+        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" th:src="@{'data:image/jpeg;base64 ,' + ${neww.image}}" data-holder-rendered="true" style="width: 200px; height: 250px;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script th:replace="fragments/bootstrap.html:: script"></script>
+<script>
+            const bottonesEliminar = document.querySelectorAll('[name="button-delete"]')
+            const eliminarNoticia = async (boton) => {
+            let botonID = boton.target.id
+            const getBotonId = (botonID) =>parseInt(botonID.split("-")[1]);
+            const response = await fetch(`/noticia/eliminar/${getBotonId(botonID)}`,{
+            method: "POST"
+            })
+            location.reload();
+            }
+            bottonesEliminar.forEach((boton) =>
+            boton.addEventListener("click", eliminarNoticia)
+            )
+</script>
+</body>
+</html>

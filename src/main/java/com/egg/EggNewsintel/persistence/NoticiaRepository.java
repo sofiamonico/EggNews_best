@@ -1,5 +1,6 @@
 package com.egg.EggNewsintel.persistence;
 
+import com.egg.EggNewsintel.domain.Journalist;
 import com.egg.EggNewsintel.domain.New;
 import com.egg.EggNewsintel.domain.repository.NewRepository;
 import com.egg.EggNewsintel.persistence.crud.NoticiaCrudRepository;
@@ -29,6 +30,7 @@ public class NoticiaRepository implements NewRepository {
     public Optional<New> getNoticia(int newId){
         return noticiaCrudRepository.findById(newId).map(noticia -> newMapper.toNew(noticia));
     }
+
     @Override
     public New save(New neww){
         Noticia noticia = newMapper.toNoticia(neww);

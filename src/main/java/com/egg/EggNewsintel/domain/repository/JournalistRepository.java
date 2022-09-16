@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface JournalistRepository {
     List<Journalist> getAll();
     Optional<Journalist> getJournalist(int newId);
+    Optional<Journalist> findPeriodistaByNombreUsuario(String nombreUsuario);
     Journalist save(Journalist journalist);
     void delete(int journalistId);
 }

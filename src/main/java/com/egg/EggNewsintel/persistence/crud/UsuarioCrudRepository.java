@@ -20,6 +20,5 @@ public interface UsuarioCrudRepository extends CrudRepository<Usuario, Integer> 
                                   @Param("id") int id, @Param("role") String role);
     Optional<Usuario> findUsuarioByNombreUsuario(String nombreUsuario);
 
-    Optional<Periodista> findPeriodistaByIdUsuario(int idUsuario);
 
 }

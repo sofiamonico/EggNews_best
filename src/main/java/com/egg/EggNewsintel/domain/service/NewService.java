@@ -31,6 +31,7 @@ public class NewService {
         return newRepository.getNoticia(newId);
     };
 
+
     @Transactional
     public New save(String title, String body, MultipartFile img, Integer id) throws MyException {
         validar(title, body, img);
